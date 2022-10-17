@@ -26,7 +26,7 @@ public class MessageService {
             return messageRepository.save(message);
         } else {
             Optional<Message> messageEncontrado = messageRepository.getMessage(message.getIdMessage());
-            if (messageEncontrado.isEmpty()){
+            if (messageEncontrado.isPresent()){
                 return messageRepository.save(message);
             }else {
                 return message;
@@ -36,7 +36,7 @@ public class MessageService {
     public Message update(Message message){
         if (message.getIdMessage() != null){
             Optional<Message> messageEncontrado = messageRepository.getMessage(message.getIdMessage());
-            if (!messageEncontrado.isEmpty()) {
+            if (!messageEncontrado.isPresent()) {
                 if (message.getMessageText() != null) {
                     messageEncontrado.get().setMessageText(message.getMessageText());
                 }

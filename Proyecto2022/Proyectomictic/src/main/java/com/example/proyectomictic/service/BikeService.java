@@ -24,7 +24,7 @@ public class BikeService {
             return bikeRepository.save(b);
         } else {
             Optional<Bike> bikeEncontrado = bikeRepository.getBike(b.getId());
-            if (bikeEncontrado.isEmpty()) {
+            if (bikeEncontrado.isPresent()) {
 
                 return bikeRepository.save(b);
             } else {
@@ -37,7 +37,7 @@ public class BikeService {
     public Bike update(Bike b) {
         if (b.getId() != null) {
             Optional<Bike> bikeEncontrado = bikeRepository.getBike(b.getId());
-            if (!bikeEncontrado.isEmpty()) {//Aqui niego este bolean Y se verifica que no este vacio
+            if (!bikeEncontrado.isPresent()) {//Aqui niego este bolean Y se verifica que no este vacio
                 if (b.getName() != null) {
                     bikeEncontrado.get().setName(b.getName());
                 }

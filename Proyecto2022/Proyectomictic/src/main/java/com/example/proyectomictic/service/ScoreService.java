@@ -26,7 +26,7 @@ public class ScoreService {
             return scoreRepository.save(s);
         } else {
             Optional<Score> scoreEncontrado = scoreRepository.getScore(s.getIdScore());
-            if (scoreEncontrado.isEmpty()){
+            if (scoreEncontrado.isPresent()){
                 return scoreRepository.save(s);
             }else {
                 return s;
@@ -36,7 +36,7 @@ public class ScoreService {
     public Score update(Score s){
         if (s.getIdScore() != null){
             Optional<Score> scoreEncontrado = scoreRepository.getScore(s.getIdScore());
-            if (! scoreEncontrado.isEmpty()) {//aqui se verifica que no este vacio
+            if (! scoreEncontrado.isPresent()) {//aqui se verifica que no este vacio
                 if (s.getMessageText() != null) {
                     scoreEncontrado.get().setMessageText(s.getMessageText());
                 }

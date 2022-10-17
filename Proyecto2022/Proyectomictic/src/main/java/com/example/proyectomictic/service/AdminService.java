@@ -25,7 +25,7 @@ public class AdminService {
             return adminRepository.save(a);
             } else {
                 Optional<Admin> adminEncontrado = adminRepository.getAdmin(a.getIdAdmin());
-                if (adminEncontrado.isEmpty()){
+                if (adminEncontrado.isPresent()){
                     return adminRepository.save(a);
                 }else {
                     return a;
@@ -35,7 +35,7 @@ public class AdminService {
     public Admin update(Admin a){
         if (a.getIdAdmin() != null){
             Optional<Admin> adminEncontrado = adminRepository.getAdmin(a.getIdAdmin());
-            if (!adminEncontrado.isEmpty()) {//aqui se verifica que no este vacio
+            if (!adminEncontrado.isPresent()) {//aqui se verifica que no este vacio
                 if (a.getPassword() != null) {
                     adminEncontrado.get().setPassword(a.getPassword());
                 }
